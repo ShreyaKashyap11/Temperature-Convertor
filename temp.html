@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <link rel="stylesheet" href="style.css" />
+    <title>Temperature Converter App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="temperature-converter">
+          <h1 class="title">Temperature Converter</h1>
+          
+          <div class="degree-type">
+            <div class="degree-field">
+              <label for="degree">Degrees</label>
+              <input type="number" name="degree" id="degree" />
+            </div>
+            <div class="temp-field">
+              <label for="temp-type">Type</label>
+              <select name="temperatures" id="temp-type" autocomplete="on">
+                <option id="fahrenheit" value="fahrenheit">Fahrenheit</option>
+                <option id="Celsius" value="Celsius">Celsius</option>
+              </select>
+            </div>
+          </div>
+          <div class="result">
+            <span class="result-heading">Result (degrees)</span>
+            <h2 class="celsius-value" id="calculate"></h2>
+          </div>
+          <button id="convert-btn">Convert</button>
+      </div>
+    </div>
+    
+<script>
+        const cal = document.querySelector("#calculate");
+        const degree = document.querySelector("#degree");
+        const convertBtn = document.querySelector("#convert-btn");
+        const tempType = document.querySelector("#temp-type");
+
+window.addEventListener("load", () => {
+  degree.value = "";
+  cal.innerHTML = "";
+});
+
+convertBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  convert();
+});
+
+function convert() {
+  let inputValue = degree.value;
+
+if (tempType.value === "fahrenheit") {
+    const FahrenheitToCelsius = (inputValue - 32) * (5 / 9);
+    cal.innerHTML = `${FahrenheitToCelsius.toFixed(3)} &deg;c`;
+  } else if (tempType.value === "Celsius") {
+    const CelsiusToFahrenheit = (inputValue*1.8)+32;
+    cal.innerHTML = `${CelsiusToFahrenheit.toFixed(3)} &deg;c`;
+  }
+}
+    </script>
+  </body>
+</html>
